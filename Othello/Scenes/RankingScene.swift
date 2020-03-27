@@ -13,7 +13,7 @@ class RankingScene: SKScene {
     var db:DBConnector = DBConnector()
     var scores:[RankingScore] = []
     override func didMove(to view: SKView) {
-        db.insert(id: 1, playerOneName: "Filip", playerTwoName: "Zasim", againstComputer: 0, playerOneScore: 34, playerTwoScore: 30)
+        db.insert(playerOneName: "Filip", playerTwoName: "Zasim", againstComputer: 0, playerOneScore: 34, playerTwoScore: 30)
         scores = db.read()
     }
     

@@ -85,9 +85,10 @@ class MenuScene: SKScene {
             }
             
             if name == "rankingButton" || name == "ranking" {
-                let crossScene = SKTransition.crossFade(withDuration: 0.5)
-                let nextScene = RankingScene(size: self.size)
-                self.view?.presentScene(nextScene, transition: crossScene)            }
+                //let crossScene = SKTransition.crossFade(withDuration: 0.5)
+                //let nextScene = RankingScene(size: self.size)
+                //self.view?.presentScene(nextScene, transition: crossScene)            }
         }
     }
+}
 }

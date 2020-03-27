@@ -117,8 +117,8 @@
             timestampString = "606674024.769564"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,8 +134,8 @@
             timestampString = "606674024.769613"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,8 +151,8 @@
             timestampString = "606674024.769662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "374"
+            endingLineNumber = "374"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,8 +168,8 @@
             timestampString = "606674024.76974"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>
@@ -185,8 +185,8 @@
             timestampString = "606674024.7698849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,8 +202,8 @@
             timestampString = "606674024.769944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>
@@ -219,8 +219,8 @@
             timestampString = "606674024.770018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "markPotentialMoves()"
             landmarkType = "7">
          </BreakpointContent>

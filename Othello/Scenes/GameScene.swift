@@ -9,7 +9,8 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    
+    let window = SKShapeNode(rectOf: CGSize(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 3), cornerRadius: CGFloat(30))
+    let background = SKShapeNode(rectOf: CGSize(width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.height * 2))
     let backLabel = SKLabelNode(fontNamed: "Chalkboard SE Light")
     let backButton = SKShapeNode(rectOf: CGSize(width: 150, height: 50), cornerRadius: CGFloat(15))
     let turnLabel = SKLabelNode(fontNamed: "Chalkboard SE Light")
@@ -23,12 +24,14 @@ class GameScene: SKScene {
     let logic = GameLogicController()
     var fields = Array(repeating: Array(repeating: OthelloField(xPosition: 0, yPosition: 0, position: CGPoint(x: 0, y: 0)), count: 8), count: 8)
     var isTouchAllowed = true
+    var playerNameEntry = UITextField()
     func setNames(playerOneName: String, playerTwoName: String){
         logic.setNames(playerOneName: playerOneName, playerTwoName: playerTwoName)
     }
     
     
     override func didMove(to view: SKView) {
+        
         layoutScene()
     }
     
@@ -37,14 +40,7 @@ class GameScene: SKScene {
         self.backgroundColor = UIColor.white
         self.scaleMode = .aspectFill
         // back button init
-        backLabel.text = "< Back"
-        backLabel.position = CGPoint(x: 40 ,y: UIScreen.main.bounds.height - 60)
-        backLabel.fontColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0)
-        backLabel.fontSize = 24
-        backLabel.name = "back"
-        backButton.fillColor = UIColor.white
-        backButton.position = CGPoint(x: 40  ,y:  UIScreen.main.bounds.height - 50)
-        backButton.name = "backButton"
+      
         
         // turn label init
         turnLabel.fontColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0)
@@ -142,19 +138,104 @@ class GameScene: SKScene {
     }
     
     func showSaveScoreWindow(){
-        let window = SKShapeNode(rectOf: CGSize(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 2), cornerRadius: CGFloat(30))
-        let question = SKLabelNode()
-        let yesButtonLabel = SKLabelNode()
-        let noButtonLabel = SKLabelNode()
-        let yesButton = SKShapeNode(rectOf: CGSize(width: 150, height: 50), cornerRadius: CGFloat(15))
-        let noButton = SKShapeNode(rectOf: CGSize(width: UIScreen.main.bounds.width - 20, height: 400), cornerRadius: CGFloat(15))
+       
+        let winnerLabel = SKLabelNode(fontNamed: "Chalkboard SE Light")
+        let scoreLabel = SKLabelNode(fontNamed: "Chalkboard SE Light")
+        let actionButtonLabel = SKLabelNode(fontNamed: "Chalkboard SE Light")
+        let actionButton = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: CGFloat(15))
         
-        window.fillColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0)
+        background.fillColor = UIColor(red : 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
+        background.name = "background"
+        background.position = CGPoint(x: 0 ,y:0)
+        
+        
+        window.strokeColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0)
+        window.fillColor = UIColor.white
         window.position = CGPoint(x: UIScreen.main.bounds.width/2 ,y: UIScreen.main.bounds.height / 2)
+    
+        winnerLabel.fontSize = 40
+        winnerLabel.position = CGPoint(x: 0 ,y: UIScreen.main.bounds.height / 6 - 40)
+        scoreLabel .fontSize = 32
+         scoreLabel.text = "\(logic.countPlayerOneTokens()) - \(logic.countPlayerTwoTokens())"
+        winnerLabel.position = CGPoint(x: 0 ,y: UIScreen.main.bounds.height / 6 - 70)
+        
+        actionButton.position = CGPoint(x: 0 ,y: UIScreen.main.bounds.height / -6 )
+        actionButton.fillColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0)
+        
+        
+        
+        actionButtonLabel.position = CGPoint(x: 0 ,y: (UIScreen.main.bounds.height / -6) - 9)
+        
+        
+        if(logic.againstComputer){
+            if(logic.winner){
+                let bottomLine = CALayer()
+                let textFieldFrame = CGRect(origin: .zero, size: CGSize(width: 200, height: 40))
+                playerNameEntry = UITextField(frame: textFieldFrame)
+                bottomLine.frame = CGRect(x:0.0, y:playerNameEntry.frame.height - 1, width: playerNameEntry.frame.width, height: 1)
+                bottomLine.backgroundColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0).cgColor
+                playerNameEntry.placeholder = "name"
+                playerNameEntry.font = UIFont(name: "Chalkboard SE Light", size: 36)
+                playerNameEntry.textColor = UIColor(red : 32/255, green: 138/255, blue: 49/255, alpha: 1.0)
+                playerNameEntry.textAlignment = NSTextAlignment.center
+                playerNameEntry.borderStyle = UITextBorderStyle.none
+                playerNameEntry.layer.addSublayer(bottomLine)
+                playerNameEntry.frame.origin.y = CGFloat(UIScreen.main.bounds.height / 2 + 20)
+                     playerNameEntry.frame.origin.x = CGFloat((UIScreen.main.bounds.width / 2) - 100 )
+                view!.addSubview(playerNameEntry)
+                winnerLabel.text = "You won!"
+                winnerLabel.fontColor = UIColor(red: 5/255, green: 135/255, blue: 29/255, alpha: 1.0)
+                scoreLabel.fontColor = UIColor(red: 5/255, green: 135/255, blue: 29/255, alpha: 1.0)
+                actionButtonLabel.text = "Save score"
+                actionButton.name = "saveButton"
+                actionButtonLabel.name = "saveLabel"
+                
+            }else{
+                winnerLabel.text = "You lose!"
+                winnerLabel.fontColor = UIColor.red
+                scoreLabel.fontColor = UIColor.red
+                actionButtonLabel.text = "Play again"
+                actionButton.name = "playAgain"
+                actionButtonLabel.name = "playAgainLabel"
+            }
+           
+        }else {
+            winnerLabel.text = " \(logic.getWinnerName()) won!"
+            winnerLabel.fontColor = UIColor(red: 5/255, green: 135/255, blue: 29/255, alpha: 1.0)
+            scoreLabel.fontColor = UIColor(red: 5/255, green: 135/255, blue: 29/255, alpha: 1.0)
+            actionButtonLabel.text = "Save score"
+            actionButton.name = "saveButton"
+            actionButtonLabel.name = "saveLabel"
+        }
+        
+        winnerLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
+        
+       
+        window.addChild(winnerLabel)
+        window.addChild(scoreLabel)
+        window.addChild(actionButton)
+        window.addChild(actionButtonLabel)
+        self.addChild(background)
         self.addChild(window)
         
     }
-    
+    func hideScoreWindow(){
+        background.removeFromParent()
+        playerNameEntry.removeFromSuperview()
+        window.removeAllChildren()
+        window.removeFromParent()
+    }
+    func saveScore(){
+        if(logic.againstComputer){
+            if(playerNameEntry.text!.count > 0){
+                logic.playerOneName = playerNameEntry.text!
+            }else{
+                logic.playerOneName = "Player"
+            }
+        }
+        logic.saveScore()
+        
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if(isTouchAllowed){
             isTouchAllowed = false;
@@ -166,9 +247,18 @@ class GameScene: SKScene {
                 if name == "restart" || name == "restartLabel" {
                     restartGame()
                 }
-                if name == "back" || name == "backButton" {
-                    let nextScene = MenuScene(size: self.size)
-                    self.view?.presentScene(nextScene)
+                if name == "playAgain" || name == "playAgainLabel" {
+                    hideScoreWindow()
+                    restartGame()
+                }
+                if name == "saveButton" || name == "saveLabel" {
+                     saveScore()
+                     hideScoreWindow()
+                     restartGame()
+                }
+                if name == "background" {
+                    hideScoreWindow()
+                    
                 }
             }
             if let field = touchedNode as? OthelloField {

@@ -28,7 +28,7 @@ class DBConnector{
         }
     }
     func createTable(){
-        let createTableString = "CREATE TABLE IF NOT EXISTS rankingScore(Id INTEGER PRIMARY KEY, playerOneName TEXT, playerTwoName TEXT, againstComputer INTEGER, playerOneScore INTEGER, playerTwoScore INTEGER);"
+        let createTableString = "CREATE TABLE IF NOT EXISTS rankingScore(Id INTEGER PRIMARY KEY AUTOINCREMENT, playerOneName TEXT, playerTwoName TEXT, againstComputer INTEGER, playerOneScore INTEGER, playerTwoScore INTEGER);"
         var createTableStatement: OpaquePointer? = nil
         if(sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK){
             
@@ -44,23 +44,16 @@ class DBConnector{
         sqlite3_finalize(createTableStatement)
     }
     
-    func insert(id: Int,playerOneName: String, playerTwoName: String, againstComputer: Int, playerOneScore: Int, playerTwoScore: Int){
+    func insert(playerOneName: String, playerTwoName: String, againstComputer: Int, playerOneScore: Int, playerTwoScore: Int){
         
-        let rankingScores = read()
-        for score in rankingScores{
-            if score.id == id{
-                return
-            }
-        }
-        let insertStatementString = "INSERT INTO rankingScore (Id, playerOneName, playerTwoName, againstComputer, playerOneScore, playerTwoScore) VALUES (?,?,?,?,?,?);"
+        let insertStatementString = "INSERT INTO rankingScore ( playerOneName, playerTwoName, againstComputer, playerOneScore, playerTwoScore) VALUES (?,?,?,?,?);"
         var insertStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK{
-            sqlite3_bind_int(insertStatement, 1, Int32(id))
-            sqlite3_bind_text(insertStatement, 2, (playerOneName as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 3, (playerTwoName as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 4, Int32(againstComputer))
-            sqlite3_bind_int(insertStatement, 5, Int32(playerOneScore))
-            sqlite3_bind_int(insertStatement, 6, Int32(playerTwoScore))
+            sqlite3_bind_text(insertStatement, 1, (playerOneName as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, (playerTwoName as NSString).utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 3, Int32(againstComputer))
+            sqlite3_bind_int(insertStatement, 4, Int32(playerOneScore))
+            sqlite3_bind_int(insertStatement, 5, Int32(playerTwoScore))
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("Successfully inserted row.")
@@ -88,8 +81,6 @@ class DBConnector{
                 let playerOneScore = sqlite3_column_int(queryStatement, 4)
                 let playerTwoScore = sqlite3_column_int(queryStatement, 5)
                 scores.append(RankingScore(id: Int(id), playerOneName: playerOneName,playerTwoName: playerTwoName, againstComputer: Int(againstComputer), playerOneScore: Int(playerOneScore), playerTwoScore: Int(playerTwoScore) ))
-                print("Query Result:")
-                print("\(id) \(playerOneName) \(playerOneScore)")
             }
         }else{
             print("SELECT statement could not be prepared")

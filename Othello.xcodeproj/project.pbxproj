@@ -18,10 +18,12 @@
 		8435D014241BBA3A0046862A /* OthelloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435D013241BBA3A0046862A /* OthelloUITests.swift */; };
 		8483AD3F241D10AF009B1E27 /* PlayerNamesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483AD3E241D10AF009B1E27 /* PlayerNamesScene.swift */; };
 		84861EAD24217CED004A242E /* OthelloField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84861EAC24217CED004A242E /* OthelloField.swift */; };
-		84954517241C2B9100002D03 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84954516241C2B9100002D03 /* MenuScene.swift */; };
-		84AD60ED241D706A00F3789B /* RankingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AD60EC241D706A00F3789B /* RankingScene.swift */; };
+		84CA44FC242DF50400A1BF5A /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA44FB242DF50400A1BF5A /* MultiplayerViewController.swift */; };
+		84CE30DB242CE3400069BB05 /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE30DA242CE3400069BB05 /* RankingCell.swift */; };
+		84CE30DD242CEE170069BB05 /* LeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE30DC242CEE170069BB05 /* LeaderViewController.swift */; };
 		84D2BB922429403D0056ED6A /* RankingScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2BB912429403D0056ED6A /* RankingScore.swift */; };
 		84D2BB94242946B90056ED6A /* DBConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2BB93242946B90056ED6A /* DBConnector.swift */; };
+		84F50B9D242D672500EDFD99 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F50B9C242D672500EDFD99 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +61,12 @@
 		8435D015241BBA3A0046862A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8483AD3E241D10AF009B1E27 /* PlayerNamesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNamesScene.swift; sourceTree = "<group>"; };
 		84861EAC24217CED004A242E /* OthelloField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloField.swift; sourceTree = "<group>"; };
-		84954516241C2B9100002D03 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
-		84AD60EC241D706A00F3789B /* RankingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingScene.swift; sourceTree = "<group>"; };
+		84CA44FB242DF50400A1BF5A /* MultiplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
+		84CE30DA242CE3400069BB05 /* RankingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RankingCell.swift; path = Othello/RankingCell.swift; sourceTree = "<group>"; };
+		84CE30DC242CEE170069BB05 /* LeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderViewController.swift; sourceTree = "<group>"; };
 		84D2BB912429403D0056ED6A /* RankingScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingScore.swift; sourceTree = "<group>"; };
 		84D2BB93242946B90056ED6A /* DBConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConnector.swift; sourceTree = "<group>"; };
+		84F50B9C242D672500EDFD99 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 		8435CFE1241BBA3A0046862A = {
 			isa = PBXGroup;
 			children = (
+				84CE30DA242CE3400069BB05 /* RankingCell.swift */,
 				8435CFEC241BBA3A0046862A /* Othello */,
 				8435D007241BBA3A0046862A /* OthelloTests */,
 				8435D012241BBA3A0046862A /* OthelloUITests */,
@@ -147,6 +152,9 @@
 			children = (
 				8435CFF5241BBA3A0046862A /* GameViewController.swift */,
 				841EA838241FC0400018A9A2 /* GameLogicController.swift */,
+				84CE30DC242CEE170069BB05 /* LeaderViewController.swift */,
+				84F50B9C242D672500EDFD99 /* Game.swift */,
+				84CA44FB242DF50400A1BF5A /* MultiplayerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -154,8 +162,6 @@
 		8435D022241BBCCA0046862A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				84AD60EC241D706A00F3789B /* RankingScene.swift */,
-				84954516241C2B9100002D03 /* MenuScene.swift */,
 				8435CFF3241BBA3A0046862A /* GameScene.swift */,
 				8483AD3E241D10AF009B1E27 /* PlayerNamesScene.swift */,
 			);
@@ -324,15 +330,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				84861EAD24217CED004A242E /* OthelloField.swift in Sources */,
+				84CA44FC242DF50400A1BF5A /* MultiplayerViewController.swift in Sources */,
 				8435CFF4241BBA3A0046862A /* GameScene.swift in Sources */,
 				841EA839241FC0400018A9A2 /* GameLogicController.swift in Sources */,
-				84AD60ED241D706A00F3789B /* RankingScene.swift in Sources */,
-				84954517241C2B9100002D03 /* MenuScene.swift in Sources */,
 				8483AD3F241D10AF009B1E27 /* PlayerNamesScene.swift in Sources */,
 				8435CFF6241BBA3A0046862A /* GameViewController.swift in Sources */,
 				84D2BB94242946B90056ED6A /* DBConnector.swift in Sources */,
+				84F50B9D242D672500EDFD99 /* Game.swift in Sources */,
 				84D2BB922429403D0056ED6A /* RankingScore.swift in Sources */,
+				84CE30DB242CE3400069BB05 /* RankingCell.swift in Sources */,
 				8435CFEE241BBA3A0046862A /* AppDelegate.swift in Sources */,
+				84CE30DD242CEE170069BB05 /* LeaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

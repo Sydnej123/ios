@@ -9,7 +9,6 @@
 import SpriteKit
 
 class PlayerNamesScene: SKScene {
-    let button = SKSpriteNode(imageNamed: "play")
     var playerOneNameEntry: UITextField!
     var playerTwoNameEntry: UITextField!
     let playButton = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: CGFloat(15))
@@ -118,13 +117,7 @@ class PlayerNamesScene: SKScene {
                 self.view?.presentScene(nextScene)
             }
             
-            if name == "back" || name == "backButton" {
-                let nextScene = MenuScene(size: self.size)
-                //  nextScene.setNames(playerOneName: <#T##String#>, playerTwoName: <#T##String#>)
-                playerOneNameEntry.removeFromSuperview()
-                playerTwoNameEntry.removeFromSuperview()
-                self.view?.presentScene(nextScene)
-            }
+           
         }
     }
 }

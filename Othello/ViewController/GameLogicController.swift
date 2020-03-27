@@ -18,7 +18,7 @@ class GameLogicController {
     var playerTwoName = "Computer"
     var againstComputer = true
     var scene = SKScene()
-    
+    var winner = true
     func initGame(scene: SKScene){
         self.scene = scene
         let scale = (UIScreen.main.bounds.width - 14) / 8
@@ -30,7 +30,7 @@ class GameLogicController {
         for i in 0...7 {
             for j in 0...7 {
                 xPosition = CGFloat(margin)  + CGFloat(j) *  scale
-                yPosition = CGFloat(margin) + 7 * scale - CGFloat(i) * scale
+                yPosition = 20 + CGFloat(margin) + 7 * scale - CGFloat(i) * scale
                 fields[i][j] = OthelloField(xPosition: j, yPosition: i, position: CGPoint(x: xPosition, y: yPosition))
                 fields[i][j].setTokenValue(tokenValue: 0)
                 scene.addChild(fields[i][j])
@@ -343,10 +343,12 @@ class GameLogicController {
     }
     
     func checkEndCondition() -> Bool{
+        currentPlayer = !currentPlayer
+        markPotentialMoves()
         var playerOneMoves = checkPossibleMoves()
         currentPlayer = !currentPlayer
+        markPotentialMoves()
         var playerTwoMoves = checkPossibleMoves()
-        currentPlayer = !currentPlayer
         return (!playerOneMoves && !playerTwoMoves)
     }
     
@@ -417,10 +419,33 @@ class GameLogicController {
         }
     }
     func endGame(){
-        print("Game Ended")
+        if(countPlayerOneTokens() > countPlayerTwoTokens()){
+            winner = true
+        }else {
+            winner = false
+        }
         let gameScene = scene as? GameScene
         gameScene!.showSaveScoreWindow()
     }
+    func getWinnerName() -> String{
+        if(countPlayerTwoTokens() > countPlayerOneTokens()){
+            return playerTwoName
+        }else{
+            return playerOneName
+        }
+    }
     
+    func saveScore(){
+        let db = DBConnector()
+       // db.openDatabase()
+        db.createTable()
+        if(againstComputer){
+
+            db.insert(playerOneName: playerOneName, playerTwoName: "Computer", againstComputer: 1, playerOneScore: countPlayerOneTokens(), playerTwoScore: countPlayerTwoTokens())
+        }else{
+            db.insert(playerOneName: playerOneName, playerTwoName: playerTwoName, againstComputer: 0, playerOneScore: countPlayerOneTokens(), playerTwoScore: countPlayerTwoTokens())
+        }
+       
+    }
 }
 
